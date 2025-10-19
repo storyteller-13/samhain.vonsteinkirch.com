@@ -483,6 +483,26 @@ footer p {
     font-family: 'Georgia', 'Times New Roman', serif, Arial, sans-serif;
 }
 
+/* Link styling - make all links orange */
+a {
+    color: #ff8c00;
+    text-decoration: none;
+    transition: color 0.3s ease, text-shadow 0.3s ease;
+}
+
+a:hover {
+    color: #ff9f1a;
+    text-shadow: 0 0 8px rgba(255, 140, 0, 0.6);
+}
+
+a:visited {
+    color: #ff8c00;
+}
+
+a:active {
+    color: #e67e00;
+}
+
 .door-content {
     max-width: 1400px;
     background: rgba(0, 0, 0, 0.7);

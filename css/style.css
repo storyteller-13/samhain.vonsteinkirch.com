@@ -528,7 +528,7 @@ a:active {
 
 .back-button {
     background: linear-gradient(145deg, #ff8c00, #cc7000);
-    color: #000;
+    color: #000 !important;
     padding: 15px 30px;
     border: none;
     border-radius: 10px;
@@ -545,6 +545,7 @@ a:active {
     transform: translateY(-2px);
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
     background: linear-gradient(145deg, #ff9f1a, #e67e00);
+    color: #000 !important;
 }
 
 .placeholder-text {

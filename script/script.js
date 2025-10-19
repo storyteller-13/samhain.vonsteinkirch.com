@@ -72,6 +72,9 @@ document.addEventListener('DOMContentLoaded', function() {
         addHoverEffects();
         // Re-add sound listeners
         addSoundListeners();
+        
+        // Update doors left count
+        updateDoorsLeftCount();
     }
     
     // Open door (navigate to door page)
@@ -291,6 +294,47 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         }
     });
+    
+    // Update doors left count
+    function updateDoorsLeftCount() {
+        const doorsLeftElement = document.getElementById('doors-left');
+        if (!doorsLeftElement) return;
+        
+        const now = new Date();
+        const currentYear = now.getFullYear();
+        const isDayAfterHalloween = now.getMonth() === 10 && now.getDate() === 1; // November 1st
+        
+        let daysUntilHalloween;
+        
+        if (isDayAfterHalloween) {
+            // If it's November 1st, we're 1 day after Halloween
+            daysUntilHalloween = -1;
+        } else {
+            const timeDiff = halloweenDate.getTime() - now.getTime();
+            daysUntilHalloween = Math.floor(timeDiff / (1000 * 3600 * 24));
+        }
+        
+        let closedDoors = 0;
+        
+        // Count doors that are still closed (locked or not yet available)
+        for (let doorNumber = 1; doorNumber <= 13; doorNumber++) {
+            const door = document.querySelector(`[data-day="${doorNumber}"]`);
+            if (!door) continue;
+            
+            // Door 1 opens 13 days before Halloween, Door 2 opens 12 days before, etc.
+            // Door 13 opens on Halloween day
+            const daysFromHalloween = 13 - doorNumber;
+            const doorOpenDate = new Date(halloweenDate);
+            doorOpenDate.setDate(doorOpenDate.getDate() - daysFromHalloween);
+            
+            if (now < doorOpenDate) {
+                // Door is still locked/closed
+                closedDoors++;
+            }
+        }
+        
+        doorsLeftElement.textContent = closedDoors + 1;
+    }
     
     // Add some Halloween-themed console messages
     console.log('%c🎃 Welcome to the Halloween Countdown! 🎃', 'color: #ff6b35; font-size: 20px; font-weight: bold;');

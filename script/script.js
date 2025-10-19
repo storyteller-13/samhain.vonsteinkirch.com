@@ -124,7 +124,7 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Create floating particles
     function createFloatingParticles() {
-        const particleCount = 20;
+        const particleCount = 40;
         const container = document.querySelector('.container');
         
         for (let i = 0; i < particleCount; i++) {
@@ -132,10 +132,10 @@ document.addEventListener('DOMContentLoaded', function() {
             particle.className = 'particle';
             particle.style.cssText = `
                 position: fixed;
-                width: 4px;
-                height: 4px;
+                width: 8px;
+                height: 8px;
                 background: #ff8c00;
-                border-radius: 50%;
+                clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
                 pointer-events: none;
                 z-index: 1000;
                 left: ${Math.random() * 100}vw;

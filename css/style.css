@@ -31,6 +31,8 @@ h1 {
     animation: glow 2s ease-in-out infinite alternate;
     white-space: nowrap;
     overflow: hidden;
+    text-align: center;
+    word-wrap: break-word;
 }
 
 h2 {
@@ -403,11 +405,12 @@ footer p {
     
     h1 {
         font-size: 2.2rem;
-        line-height: 1.2;
+        line-height: 1.3;
         margin-bottom: 15px;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
+        white-space: normal;
+        word-wrap: break-word;
+        hyphens: auto;
+        text-align: center;
     }
     
     h2 {
@@ -470,11 +473,12 @@ footer p {
     
     h1 {
         font-size: 1.8rem;
-        line-height: 1.1;
+        line-height: 1.2;
         margin-bottom: 10px;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
+        white-space: normal;
+        word-wrap: break-word;
+        hyphens: auto;
+        text-align: center;
     }
     
     h2 {
@@ -540,10 +544,11 @@ footer p {
     
     h1 {
         font-size: 1.6rem;
-        line-height: 1.1;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
+        line-height: 1.2;
+        white-space: normal;
+        word-wrap: break-word;
+        hyphens: auto;
+        text-align: center;
     }
     
     h2 {
@@ -593,6 +598,20 @@ footer p {
     .door[data-day="13"] .door-knob::before {
         width: 6px;
         height: 6px;
+    }
+}
+
+/* Very small screens (320px and below) */
+@media (max-width: 320px) {
+    h1 {
+        font-size: 1.4rem;
+        line-height: 1.1;
+        padding: 0 5px;
+    }
+    
+    h2 {
+        font-size: 0.9rem;
+        line-height: 1.1;
     }
 }
 

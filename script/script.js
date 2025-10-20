@@ -28,29 +28,22 @@ document.addEventListener('DOMContentLoaded', function() {
             // Remove all classes first
             door.classList.remove('opened', 'locked', 'available');
             
-            // Remove existing event listeners by cloning the door
-            const newDoor = door.cloneNode(true);
-            door.parentNode.replaceChild(newDoor, door);
-            
-            // Get the fresh door element
-            const freshDoor = document.querySelector(`[data-day="${doorNumber}"]`);
-            
-            if (doorNumber === 1) {
-                // Only door 1 is available to open
-                freshDoor.classList.add('available');
-                freshDoor.addEventListener('click', function() {
+            if (doorNumber === 1 || doorNumber === 2) {
+                // Doors 1 and 2 are available to open (normal state)
+                door.classList.add('available');
+                door.addEventListener('click', function() {
                     openDoor(this);
                 });
             } else {
                 // All other doors are locked
-                freshDoor.classList.add('locked');
-                freshDoor.addEventListener('click', function() {
+                door.classList.add('locked');
+                door.addEventListener('click', function() {
                     showLockedMessage(this);
                 });
             }
         }
         
-        // Re-add hover effects and sound listeners to fresh door elements
+        // Re-add hover effects and sound listeners to door elements
         addHoverEffects();
         // Re-add sound listeners
         addSoundListeners();
@@ -61,21 +54,19 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Open door (navigate to door page)
     function openDoor(door) {
-        if (!door.classList.contains('opened')) {
-            const doorNumber = door.getAttribute('data-day');
-            // Navigate to the corresponding door page
-            window.location.href = `doors/${doorNumber}.html`;
-        }
+        const doorNumber = door.getAttribute('data-day');
+        // Navigate to the corresponding door page
+        window.location.href = `doors/${doorNumber}.html`;
     }
     
     // Show message for locked doors
     function showLockedMessage(door) {
         const doorNumber = door.getAttribute('data-day');
         
-        if (doorNumber === "1") {
-            alert("Door 1 is already available to open!");
+        if (doorNumber === "1" || doorNumber === "2") {
+            alert(`Door ${doorNumber} is already available to open!`);
         } else {
-            alert(`Door ${doorNumber} is currently locked. Only door 1 is available at this time.`);
+            alert(`Door ${doorNumber} is currently locked.`);
         }
     }
     
@@ -198,8 +189,8 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Add click listeners to doors for sound
     function addSoundListeners() {
-        const freshDoors = document.querySelectorAll('.door');
-        freshDoors.forEach(door => {
+        const doors = document.querySelectorAll('.door');
+        doors.forEach(door => {
             // Remove existing sound listeners to prevent duplicates
             door.removeEventListener('click', window.handleDoorSound);
             // Add new sound listener
@@ -217,10 +208,10 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Add some interactive hover effects
     function addHoverEffects() {
-        // Get fresh door elements after potential cloning
-        const freshDoors = document.querySelectorAll('.door');
+        // Get door elements
+        const doors = document.querySelectorAll('.door');
         
-        freshDoors.forEach(door => {
+        doors.forEach(door => {
             // Remove existing hover listeners to prevent duplicates
             door.removeEventListener('mouseenter', handleMouseEnter);
             door.removeEventListener('mouseleave', handleMouseLeave);
@@ -266,7 +257,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const doorsLeftElement = document.getElementById('doors-left');
         if (!doorsLeftElement) return;
         
-        // Only door 1 is open, so 12 doors are left closed
+        // Show 12 days left (13 total - 1 available = 12)
         doorsLeftElement.textContent = 12;
     }
     

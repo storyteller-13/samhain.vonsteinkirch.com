@@ -16,32 +16,14 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     
-    // Calculate which doors should be open based on days until Halloween
+    // Calculate which doors should be open - only door 1 is open
     function updateDoors() {
         const now = new Date();
-        const currentYear = now.getFullYear();
-        const isDayAfterHalloween = now.getMonth() === 10 && now.getDate() === 1; // November 1st
-        
-        let daysUntilHalloween;
-        
-        if (isDayAfterHalloween) {
-            // If it's November 1st, we're 1 day after Halloween
-            daysUntilHalloween = -1;
-        } else {
-            const timeDiff = halloweenDate.getTime() - now.getTime();
-            daysUntilHalloween = Math.floor(timeDiff / (1000 * 3600 * 24));
-        }
         
         // Process each door by its data-day attribute
         for (let doorNumber = 1; doorNumber <= 13; doorNumber++) {
             const door = document.querySelector(`[data-day="${doorNumber}"]`);
             if (!door) continue;
-            
-            // Door 1 opens 13 days before Halloween, Door 2 opens 12 days before, etc.
-            // Door 13 opens on Halloween day
-            const daysFromHalloween = 13 - doorNumber;
-            const doorOpenDate = new Date(halloweenDate);
-            doorOpenDate.setDate(doorOpenDate.getDate() - daysFromHalloween);
             
             // Remove all classes first
             door.classList.remove('opened', 'locked', 'available');
@@ -53,14 +35,14 @@ document.addEventListener('DOMContentLoaded', function() {
             // Get the fresh door element
             const freshDoor = document.querySelector(`[data-day="${doorNumber}"]`);
             
-            if (now >= doorOpenDate) {
-                // Door should be available to open
+            if (doorNumber === 1) {
+                // Only door 1 is available to open
                 freshDoor.classList.add('available');
                 freshDoor.addEventListener('click', function() {
                     openDoor(this);
                 });
             } else {
-                // Door should be locked
+                // All other doors are locked
                 freshDoor.classList.add('locked');
                 freshDoor.addEventListener('click', function() {
                     showLockedMessage(this);
@@ -89,27 +71,11 @@ document.addEventListener('DOMContentLoaded', function() {
     // Show message for locked doors
     function showLockedMessage(door) {
         const doorNumber = door.getAttribute('data-day');
-        const now = new Date();
-        const currentYear = now.getFullYear();
-        const isDayAfterHalloween = now.getMonth() === 10 && now.getDate() === 1; // November 1st
         
-        let daysUntilHalloween;
-        
-        if (isDayAfterHalloween) {
-            // If it's November 1st, we're 1 day after Halloween
-            daysUntilHalloween = -1;
+        if (doorNumber === "1") {
+            alert("Door 1 is already available to open!");
         } else {
-            const timeDiff = halloweenDate.getTime() - now.getTime();
-            daysUntilHalloween = Math.floor(timeDiff / (1000 * 3600 * 24));
-        }
-        
-        const daysFromHalloween = 13 - parseInt(doorNumber);
-        const daysUntilOpen = daysFromHalloween - daysUntilHalloween;
-        
-        if (daysUntilOpen > 0) {
-            alert(`Door ${doorNumber} will open in ${daysUntilOpen} day${daysUntilOpen === 1 ? '' : 's'}!`);
-        } else {
-            alert(`Door ${doorNumber} will open soon!`);
+            alert(`Door ${doorNumber} is currently locked. Only door 1 is available at this time.`);
         }
     }
     
@@ -300,40 +266,8 @@ document.addEventListener('DOMContentLoaded', function() {
         const doorsLeftElement = document.getElementById('doors-left');
         if (!doorsLeftElement) return;
         
-        const now = new Date();
-        const currentYear = now.getFullYear();
-        const isDayAfterHalloween = now.getMonth() === 10 && now.getDate() === 1; // November 1st
-        
-        let daysUntilHalloween;
-        
-        if (isDayAfterHalloween) {
-            // If it's November 1st, we're 1 day after Halloween
-            daysUntilHalloween = -1;
-        } else {
-            const timeDiff = halloweenDate.getTime() - now.getTime();
-            daysUntilHalloween = Math.floor(timeDiff / (1000 * 3600 * 24));
-        }
-        
-        let closedDoors = 0;
-        
-        // Count doors that are still closed (locked or not yet available)
-        for (let doorNumber = 1; doorNumber <= 13; doorNumber++) {
-            const door = document.querySelector(`[data-day="${doorNumber}"]`);
-            if (!door) continue;
-            
-            // Door 1 opens 13 days before Halloween, Door 2 opens 12 days before, etc.
-            // Door 13 opens on Halloween day
-            const daysFromHalloween = 13 - doorNumber;
-            const doorOpenDate = new Date(halloweenDate);
-            doorOpenDate.setDate(doorOpenDate.getDate() - daysFromHalloween);
-            
-            if (now < doorOpenDate) {
-                // Door is still locked/closed
-                closedDoors++;
-            }
-        }
-        
-        doorsLeftElement.textContent = closedDoors + 1;
+        // Only door 1 is open, so 12 doors are left closed
+        doorsLeftElement.textContent = 12;
     }
     
     // Add some Halloween-themed console messages

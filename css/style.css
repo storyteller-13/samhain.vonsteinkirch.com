@@ -1137,18 +1137,27 @@ a:active {
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-/* Door 5 specific styling - same width, stacked vertically */
+/* Door 5 specific styling - same width, stacked vertically, match movie list height */
+.door-5 .text-with-image {
+    align-items: stretch;
+}
+
 .door-5 .moon-image {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 15px;
+    gap: 10px;
+    height: 100%;
+    justify-content: space-between;
+    align-self: stretch;
 }
 
 .door-5 .new-moon-img {
-    width: 250px;
+    width: 200px;
     height: auto;
     display: block;
+    flex: 1;
+    object-fit: cover;
 }
 
 .door-4-img:hover {

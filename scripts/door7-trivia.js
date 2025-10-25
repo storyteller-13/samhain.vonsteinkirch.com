@@ -68,9 +68,9 @@ const triviaQuestions = [
     {
         question: "in this haunted game, who will capture the princess's heart?",
         answers: [
-            "the smart vampire bro",
-            "the werewolf with commitment issues",
-            "the ghost who's been dead for 300 years",
+            "the charming vampire with impeccable manners",
+            "the brooding werewolf who howls at the moon",
+            "the ethereal ghost who's been haunting for centuries",
             "now, this is a halloween mystery..."
         ],
         correct: 3,

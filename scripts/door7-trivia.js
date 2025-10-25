@@ -80,11 +80,18 @@ const triviaQuestions = [
 
 let currentQuestion = 0;
 let score = 0;
+let selectedAnswer = null;
 
 document.addEventListener('DOMContentLoaded', function() {
+    createFloatingSkulls();
     initializeTrivia();
 });
 
+function createFloatingSkulls() {
+}
+
+function changeSkullsToHearts() {
+}
 
 function initializeTrivia() {
     currentQuestion = 0;
@@ -114,6 +121,7 @@ function showQuestion() {
 }
 
 function selectAnswer(answerIndex) {
+    selectedAnswer = answerIndex;
     const answerButtons = document.querySelectorAll('.answer-btn');
     const question = triviaQuestions[currentQuestion];
     const isLastQuestion = currentQuestion === 6;
@@ -198,10 +206,10 @@ function checkAnswer() {
     const isLastQuestion = currentQuestion === 6;
     
     if (isLastQuestion) {
-        score++;
+        score++; // Always increment score for the last question
         createExplosionEffect();
         showResults();
-    } else if (answerIndex === question.correct) {
+    } else if (selectedAnswer === question.correct) {
         score++;
     }
     
@@ -220,6 +228,7 @@ function showResults() {
     document.getElementById('triviaResults').style.display = 'block';
     
     document.body.classList.add('quiz-complete-pink');
+    changeSkullsToHearts();
     
     const scoreDisplay = document.getElementById('scoreDisplay');
     const celebration = document.getElementById('celebration');

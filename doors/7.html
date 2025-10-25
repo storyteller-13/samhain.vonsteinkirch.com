@@ -26,7 +26,7 @@
                         style="max-width: 100%; border-radius: 15px; border: 3px solid #ff8c00; box-shadow: 0 0 20px rgba(255, 140, 0, 0.4);">
                     </iframe>
                     
-                    <iframe width="300" height="169" src="https://www.youtube.com/embed/B6YgM9IvfYs?modestbranding=1&showinfo=0&rel=0&controls=1&disablekb=1&fs=1&iv_load_policy=3&cc_load_policy=0" 
+                    <iframe width="300" height="169" src="https://www.youtube.com/embed/f4yXBIigZbg?modestbranding=1&showinfo=0&rel=0&controls=1&disablekb=1&fs=1&iv_load_policy=3&cc_load_policy=0" 
                         frameborder="0" 
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
                         allowfullscreen
@@ -42,8 +42,23 @@
                 </div>
 
                 <div class="text-frame">
-                    <div class="placeholder-text">
-                        In the end, we are all equal in death.
+                    <div class="trivia-container">
+                        <h3 class="trivia-title">💀 Memento Mori Trivia 💀</h3>
+                        <p class="trivia-subtitle">Test your knowledge about life, death, and the beautiful cycle of existence!</p>
+                        
+                        <div class="trivia-game" id="triviaGame">
+                            <div class="question-container" id="questionContainer">
+                                <div class="question-number" id="questionNumber">Question 1 of 7</div>
+                                <div class="question-text" id="questionText"></div>
+                                <div class="answers-container" id="answersContainer"></div>
+                            </div>
+                            
+                            <div class="trivia-results" id="triviaResults" style="display: none;">
+                                <div class="score-display" id="scoreDisplay"></div>
+                                <div class="celebration" id="celebration"></div>
+                                <button class="restart-btn" id="restartBtn">🔄 Play Again</button>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -54,8 +69,10 @@
     <div class="door-page pink-section">
         <div class="door-content">
             <div class="pink-content">
-                <h2 class="pink-title">Redemption</h2>
-                <p class="pink-text">In the cycle of life and death, we find our redemption through acceptance and understanding.</p>
+                <h2 class="pink-title">today's spell</h2>
+                <p class="pink-text">
+                    today's task is to prove how much you want it. the game clock is ticking...
+                    </p>
                 <div class="pink-decoration">
                     ✨ ✨ ✨
                 </div>
@@ -66,9 +83,88 @@
     </div>
 
     <script>
+        // Trivia questions with memento mori theme
+        const triviaQuestions = [
+            {
+                question: "What does 'Memento Mori' mean in Latin?",
+                answers: [
+                    "Remember you must die",
+                    "Live forever",
+                    "Death is beautiful",
+                    "Time is eternal"
+                ],
+                correct: 0
+            },
+            {
+                question: "Which ancient philosophy emphasized accepting mortality?",
+                answers: [
+                    "Stoicism",
+                    "Epicureanism",
+                    "Cynicism",
+                    "All of the above"
+                ],
+                correct: 3
+            },
+            {
+                question: "What is the traditional symbol of mortality in art?",
+                answers: [
+                    "Hourglass",
+                    "Skull",
+                    "Wilted flower",
+                    "All of the above"
+                ],
+                correct: 3
+            },
+            {
+                question: "In which season do we traditionally remember the dead?",
+                answers: [
+                    "Spring",
+                    "Summer",
+                    "Autumn",
+                    "Winter"
+                ],
+                correct: 2
+            },
+            {
+                question: "What does the phrase 'Carpe Diem' encourage us to do?",
+                answers: [
+                    "Fear death",
+                    "Seize the day",
+                    "Plan for tomorrow",
+                    "Remember the past"
+                ],
+                correct: 1
+            },
+            {
+                question: "Which flower is often associated with remembrance?",
+                answers: [
+                    "Rose",
+                    "Poppy",
+                    "Lily",
+                    "All of the above"
+                ],
+                correct: 3
+            },
+            {
+                question: "What is the ultimate message of memento mori?",
+                answers: [
+                    "Life is meaningless",
+                    "Death is scary",
+                    "Live fully while you can",
+                    "Avoid all risks"
+                ],
+                correct: 2
+            }
+        ];
+
+        let currentQuestion = 0;
+        let score = 0;
+        let selectedAnswer = null;
+
         // Custom floating skulls for door 7 (memento mori theme)
         document.addEventListener('DOMContentLoaded', function() {
             createFloatingSkulls();
+            initializeTrivia();
         });
 
         function createFloatingSkulls() {
@@ -85,6 +181,149 @@
                 skull.style.opacity = `${0.2 + Math.random() * 0.3}`;
                 skull.style.fontSize = `${8 + Math.random() * 4}px`;
                 document.body.appendChild(skull);
+            }
+        }
+
+        function initializeTrivia() {
+            currentQuestion = 0;
+            score = 0;
+            showQuestion();
+            
+            // Add restart button functionality
+            document.getElementById('restartBtn').addEventListener('click', function() {
+                document.getElementById('triviaResults').style.display = 'none';
+                document.getElementById('questionContainer').style.display = 'block';
+                initializeTrivia();
+            });
+        }
+
+        function showQuestion() {
+            const question = triviaQuestions[currentQuestion];
+            const questionNumber = document.getElementById('questionNumber');
+            const questionText = document.getElementById('questionText');
+            const answersContainer = document.getElementById('answersContainer');
+
+            questionNumber.textContent = `Question ${currentQuestion + 1} of 7`;
+            questionText.textContent = question.question;
+            
+            answersContainer.innerHTML = '';
+            
+            question.answers.forEach((answer, index) => {
+                const answerButton = document.createElement('button');
+                answerButton.className = 'answer-btn';
+                answerButton.textContent = answer;
+                answerButton.addEventListener('click', () => selectAnswer(index));
+                answersContainer.appendChild(answerButton);
+            });
+        }
+
+        function selectAnswer(answerIndex) {
+            selectedAnswer = answerIndex;
+            const answerButtons = document.querySelectorAll('.answer-btn');
+            
+            // Remove previous selections
+            answerButtons.forEach(btn => btn.classList.remove('selected'));
+            
+            // Highlight selected answer
+            answerButtons[answerIndex].classList.add('selected');
+            
+            // Show submit button
+            const submitBtn = document.createElement('button');
+            submitBtn.className = 'submit-btn';
+            submitBtn.textContent = 'Submit Answer';
+            submitBtn.addEventListener('click', checkAnswer);
+            
+            const answersContainer = document.getElementById('answersContainer');
+            if (!document.querySelector('.submit-btn')) {
+                answersContainer.appendChild(submitBtn);
+            }
+        }
+
+        function checkAnswer() {
+            const question = triviaQuestions[currentQuestion];
+            const answerButtons = document.querySelectorAll('.answer-btn');
+            const submitBtn = document.querySelector('.submit-btn');
+            
+            // Disable all buttons
+            answerButtons.forEach(btn => btn.disabled = true);
+            submitBtn.disabled = true;
+            
+            // Show correct/incorrect answers
+            answerButtons.forEach((btn, index) => {
+                if (index === question.correct) {
+                    btn.classList.add('correct');
+                } else if (index === selectedAnswer && index !== question.correct) {
+                    btn.classList.add('incorrect');
+                }
+            });
+            
+            // Update score
+            if (selectedAnswer === question.correct) {
+                score++;
+                createFloatingEmoji('✨');
+            } else {
+                createFloatingEmoji('💀');
+            }
+            
+            // Move to next question after delay
+            setTimeout(() => {
+                currentQuestion++;
+                if (currentQuestion < triviaQuestions.length) {
+                    showQuestion();
+                } else {
+                    showResults();
+                }
+            }, 2000);
+        }
+
+        function showResults() {
+            document.getElementById('questionContainer').style.display = 'none';
+            document.getElementById('triviaResults').style.display = 'block';
+            
+            const scoreDisplay = document.getElementById('scoreDisplay');
+            const celebration = document.getElementById('celebration');
+            
+            const percentage = Math.round((score / triviaQuestions.length) * 100);
+            
+            scoreDisplay.innerHTML = `
+                <h3>🎉 Trivia Complete! 🎉</h3>
+                <p>You scored ${score} out of ${triviaQuestions.length} (${percentage}%)</p>
+            `;
+            
+            // Celebration message based on score
+            if (percentage >= 85) {
+                celebration.innerHTML = '🌟 Excellent! You truly understand the beauty of memento mori! 🌟';
+                createFloatingEmoji('🌟', 5);
+            } else if (percentage >= 70) {
+                celebration.innerHTML = '✨ Great job! You have a good grasp of life\'s precious nature! ✨';
+                createFloatingEmoji('✨', 3);
+            } else if (percentage >= 50) {
+                celebration.innerHTML = '💫 Not bad! Remember, every moment is a chance to learn! 💫';
+                createFloatingEmoji('💫', 2);
+            } else {
+                celebration.innerHTML = '🌱 Keep learning! The journey of understanding mortality is beautiful! 🌱';
+                createFloatingEmoji('🌱', 2);
+            }
+        }
+
+        function createFloatingEmoji(emoji, count = 1) {
+            for (let i = 0; i < count; i++) {
+                setTimeout(() => {
+                    const floatingEmoji = document.createElement('div');
+                    floatingEmoji.innerHTML = emoji;
+                    floatingEmoji.style.position = 'fixed';
+                    floatingEmoji.style.left = `${Math.random() * 100}vw`;
+                    floatingEmoji.style.top = '50vh';
+                    floatingEmoji.style.fontSize = '2rem';
+                    floatingEmoji.style.pointerEvents = 'none';
+                    floatingEmoji.style.zIndex = '1000';
+                    floatingEmoji.style.animation = 'floatUp 3s ease-out forwards';
+                    document.body.appendChild(floatingEmoji);
+                    
+                    setTimeout(() => {
+                        document.body.removeChild(floatingEmoji);
+                    }, 3000);
+                }, i * 200);
             }
         }
 

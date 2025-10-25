@@ -34,7 +34,7 @@ const triviaQuestions = [
         explanation: "the first professional haunted house opened in the 1930s, during the great depression, as entertainment."
     },
     {
-        question: "what is the traditional symbol of mortality in art?",
+        question: "What 1978 film, directed by John Carpenter, is credited with popularizing the slasher genre and introducing the iconic villain Michael Myers to American cinema?",
         answers: [
             "hourglass",
             "skull",
@@ -245,6 +245,8 @@ function checkAnswer() {
         // Last question is always wrong, create explosion effect
         createExplosionEffect();
         createFloatingEmoji('💥', 3);
+        // Immediately hide the question and show results
+        showResults();
     } else if (selectedAnswer === question.correct) {
         score++;
         createFloatingEmoji('✨');
@@ -252,20 +254,17 @@ function checkAnswer() {
         createFloatingEmoji('💀');
     }
     
-    // Move to next question after delay
-    setTimeout(() => {
-        if (isLastQuestion) {
-            // For the last question, go directly to results after explosion
-            showResults();
-        } else {
+    // Move to next question after delay (only for non-last questions)
+    if (!isLastQuestion) {
+        setTimeout(() => {
             currentQuestion++;
             if (currentQuestion < triviaQuestions.length) {
                 showQuestion();
             } else {
                 showResults();
             }
-        }
-    }, isLastQuestion ? 3000 : 2000); // Longer delay for explosion effect
+        }, 2000);
+    }
 }
 
 function showResults() {
@@ -278,8 +277,8 @@ function showResults() {
     const percentage = Math.round((score / triviaQuestions.length) * 100);
     
     scoreDisplay.innerHTML = `
-        <h3>🎉 Trivia Complete! 🎉</h3>
-        <p>You scored ${score} out of ${triviaQuestions.length} (${percentage}%)</p>
+        <h3>trivia complete!</h3>
+        <p>you scored ${score} out of ${triviaQuestions.length} (${percentage}%)</p>
     `;
     
     // Celebration message based on score

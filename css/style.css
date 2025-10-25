@@ -1646,17 +1646,6 @@ a:active {
     position: relative;
 }
 
-.question-number::after {
-    content: '';
-    position: absolute;
-    bottom: -8px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 60px;
-    height: 2px;
-    background: linear-gradient(90deg, transparent, #ff8c00, transparent);
-    border-radius: 1px;
-}
 
 .question-text {
     font-size: 1.5rem;

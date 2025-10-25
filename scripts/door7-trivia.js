@@ -1,4 +1,3 @@
-// Trivia questions with memento mori theme
 const triviaQuestions = [
 {
         question: "halloween was originally known as what in the united states?",
@@ -83,7 +82,6 @@ let currentQuestion = 0;
 let score = 0;
 let selectedAnswer = null;
 
-// Custom floating skulls for door 7 (memento mori theme)
 document.addEventListener('DOMContentLoaded', function() {
     createFloatingSkulls();
     initializeTrivia();
@@ -113,7 +111,6 @@ function showQuestion() {
     questionNumber.textContent = `question ${currentQuestion + 1} of 7`;
     questionText.textContent = question.question;
     
-    // Clear previous content including explanations
     answersContainer.innerHTML = '';
     
     question.answers.forEach((answer, index) => {
@@ -131,7 +128,6 @@ function selectAnswer(answerIndex) {
     const question = triviaQuestions[currentQuestion];
     const isLastQuestion = currentQuestion === 6;
     
-    // Remove previous selections and feedback
     answerButtons.forEach(btn => {
         btn.classList.remove('selected', 'correct', 'incorrect');
         btn.disabled = false;
@@ -156,8 +152,7 @@ function selectAnswer(answerIndex) {
             }
         });
     }
-    
-    // Highlight selected answer
+
     answerButtons[answerIndex].classList.add('selected');
     
     // Show explanation
@@ -166,7 +161,7 @@ function selectAnswer(answerIndex) {
     // Show next button instead of submit
     const nextBtn = document.createElement('button');
     nextBtn.className = 'submit-btn';
-    nextBtn.textContent = currentQuestion === triviaQuestions.length - 1 ? 'See Results' : 'Next Question';
+    nextBtn.textContent = currentQuestion === triviaQuestions.length - 1 ? 'see results' : 'next question';
     nextBtn.addEventListener('click', checkAnswer);
     
     const answersContainer = document.getElementById('answersContainer');
@@ -176,7 +171,7 @@ function selectAnswer(answerIndex) {
 }
 
 function showAnswerExplanation(question, selectedIndex) {
-    // Remove any existing explanation
+
     const existingExplanation = document.querySelector('.answer-explanation');
     if (existingExplanation) {
         existingExplanation.remove();
@@ -194,7 +189,7 @@ function showAnswerExplanation(question, selectedIndex) {
         explanation.innerHTML = `
             <div class="explanation-content">
                 <p class="explanation-text">boom!</p>
-                <p class="explanation-text">this question was a trick! time for the big finale!</p>
+                <p class="explanation-text">this question was a tricky one! time for the big finale...</p>
             </div>
         `;
     } else if (isCorrect) {
@@ -207,13 +202,12 @@ function showAnswerExplanation(question, selectedIndex) {
     } else {
         explanation.innerHTML = `
             <div class="explanation-content incorrect-explanation">
-                <p class="explanation-text">not quite right.</p>
+                <p class="explanation-text">not quite right...</p>
                 <p class="explanation-text">${question.explanation}</p>
             </div>
         `;
     }
     
-    // Add explanation to the answers container
     const answersContainer = document.getElementById('answersContainer');
     answersContainer.appendChild(explanation);
 }
@@ -263,14 +257,10 @@ function showResults() {
     `;
     
     // Celebration message based on score
-    if (percentage >= 85) {
-        celebration.innerHTML = 'Excellent! You truly understand the beauty of memento mori!';
-    } else if (percentage >= 70) {
-        celebration.innerHTML = 'Great job! You have a good grasp of life\'s precious nature!';
-    } else if (percentage >= 50) {
-        celebration.innerHTML = 'Not bad! Remember, every moment is a chance to learn!';
+    if (percentage >= 50) {
+        celebration.innerHTML = 'excellent! you truly understand the beauty of memento mori!';
     } else {
-        celebration.innerHTML = 'Keep learning! The journey of understanding mortality is beautiful!';
+        celebration.innerHTML = 'not too bad! remember, every moment is a chance to learn!';
     }
     
     // Force pink styling on result elements immediately

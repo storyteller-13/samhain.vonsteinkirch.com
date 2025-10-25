@@ -55,15 +55,15 @@ const triviaQuestions = [
         explanation: "rockwell released 'somebody's watching me' in 1984, featuring michael jackson on backing vocals. the song became a halloween classic due to its paranoid lyrics about being watched, perfectly capturing the spooky atmosphere of the season. interestingly, rockwell was the son of motown founder berry gordy, and the song's success was largely due to jackson's distinctive backing vocals."
     },
     {
-        question: "which legendary music producer co-wrote and produced michael jackson's thriller album, creating the best-selling album of all time?",
+        question: "What is the name of the hotel where jack torrance takes his family to work during the winter in the shining?",
         answers: [
-            "quincy jones",
-            "phil spector",
-            "rick rubin",
-            "george martin"
+            "the grandview hotel",
+            "the overlook hotel",
+            "the mountain lodge",
+            "the winterfell hotel"
         ],
-        correct: 0,
-        explanation: "quincy jones co-wrote and produced michael jackson's thriller album, which became the best-selling album of all time with over 100 million copies sold worldwide. the album featured the iconic halloween-themed title track 'thriller' with its famous music video directed by john landis, revolutionizing music videos and becoming a halloween classic. jones also worked on jackson's previous albums 'off the wall' and 'bad', establishing one of the most successful artist-producer partnerships in music history."
+        correct: 1,
+        explanation: "the overlook hotel is the iconic haunted location in stephen king's 'the shining' (1977) and stanley kubrick's 1980 film adaptation. inspired by the real-life stanley hotel in estes park, colorado, the overlook serves as a character itself — a massive, isolated mountain resort that becomes increasingly malevolent. the hotel's history includes a previous caretaker who murdered his family, and its supernatural influence drives jack torrance to madness. kubrick's film was shot at the timberline lodge in oregon for exterior shots, while the interior was built on soundstages in england, creating one of cinema's most memorable haunted locations."
     },
     {
         question: "in this haunted game, who will capture the princess's heart?",

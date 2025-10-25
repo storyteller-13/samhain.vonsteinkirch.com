@@ -67,15 +67,15 @@ const triviaQuestions = [
         explanation: "quincy jones co-wrote and produced michael jackson's thriller album, which became the best-selling album of all time with over 100 million copies sold worldwide. the album featured the iconic halloween-themed title track 'thriller' with its famous music video directed by john landis, revolutionizing music videos and becoming a halloween classic. jones also worked on jackson's previous albums 'off the wall' and 'bad', establishing one of the most successful artist-producer partnerships in music history."
     },
     {
-        question: "who is going to win the princess's heart and become her infinite lover?",
+        question: "who is going to win the princess's heart in this spooky halloween tale?",
         answers: [
             "the bro",
+            "not the bro",
             "the other bro",
-            "the other other bro",
-            "i dunno man, i am getting a lil confused here..."
+            "now, that's a halloween mystery"
         ],
         correct: 2,
-        explanation: "well, let's see who is brave enough to get a date with me... we don't want to live in the interwebs forever, do we?"
+        explanation: "well, let's see who is brave enough to get a date with her... we don't want to live in the interwebs forever, do we?"
     }
 ];
 

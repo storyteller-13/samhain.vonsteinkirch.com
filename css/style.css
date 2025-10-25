@@ -1155,11 +1155,12 @@ body.quiz-complete-pink .door-page {
 }
 
 body.quiz-complete-pink .door-content {
-    background: rgba(255, 255, 255, 0.9) !important;
+    background: rgba(230, 145, 213, 0.9) !important;
     border: 3px solid #ff1493 !important;
     box-shadow: 0 0 30px rgba(255, 20, 147, 0.6) !important;
-    color: #333 !important;
+    color: #df42ca !important;
     transition: all 2s ease;
+    font-color: #df42ca !important;
 }
 
 body.quiz-complete-pink .door-title {

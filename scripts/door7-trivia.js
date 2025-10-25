@@ -73,7 +73,7 @@ const triviaQuestions = [
             "the ghost who's been dead for 300 years",
             "now, this is a halloween mystery..."
         ],
-        correct: 2,
+        correct: 3,
         explanation: "well, let's see who is brave enough to get a date with her... we don't want to live in the interwebs forever, do we?"
     }
 ];
@@ -206,6 +206,7 @@ function checkAnswer() {
     const isLastQuestion = currentQuestion === 6;
     
     if (isLastQuestion) {
+        score++;
         createExplosionEffect();
         showResults();
     } else if (selectedAnswer === question.correct) {

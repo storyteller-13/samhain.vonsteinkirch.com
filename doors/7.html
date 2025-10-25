@@ -43,7 +43,7 @@
 
                 <div class="text-frame">
                     <div class="trivia-container">
-                        <h3 class="trivia-title">the existential quiz</h3>
+                        <h3 class="trivia-title">the specterly american quiz</h3>
                         <p class="trivia-subtitle">test your knowledge about life, death, and the beautiful cycle of existence</p>
                         
                         <div class="trivia-game" id="triviaGame">
@@ -82,7 +82,8 @@
                     "samhain",
                     "harvest festival"
                 ],
-                correct: 0
+                correct: 0,
+                explanation: "all hallows' eve was the original name for halloween, referring to the evening before all saints' day."
             },
             {
                 question: "what does 'memento mori' mean in latin?",
@@ -92,7 +93,8 @@
                     "ghosts are cool",
                     "vampires must die"
                 ],
-                correct: 0
+                correct: 0,
+                explanation: "memento mori literally means 'remember that you must die' - a reminder of mortality to inspire living fully."
             },
             {
                 question: "many american towns hold 'haunted house' attractions during october. the first professional haunted house in the USA was opened in which decade?",
@@ -102,7 +104,8 @@
                     "1960s",
                     "1980s"
                 ],
-                correct: 1
+                correct: 1,
+                explanation: "the first professional haunted house opened in the 1930s, during the great depression, as entertainment."
             },
             {
                 question: "what is the traditional symbol of mortality in art?",
@@ -112,38 +115,41 @@
                     "wilted flower",
                     "all of the above"
                 ],
-                correct: 3
+                correct: 3,
+                explanation: "all of these symbols represent mortality - hourglass (time), skull (death), and wilted flower (decay)."
             },
-
             {
-                question: "What does the phrase 'Carpe Diem' encourage us to do?",
+                question: "which american singer released the song somebody's watching me, which has become a halloween favorite due to its creepy lyrics??",
                 answers: [
-                    "Fear death",
-                    "Seize the day",
-                    "Plan for tomorrow",
-                    "Remember the past"
+                    "michael jackson",
+                    "bobby pickett",
+                    "rockwell",
+                    "ray parker jr."
                 ],
-                correct: 1
+                correct: 2,
+                explanation: "rockwell released 'somebody's watching me' in 1984, featuring michael jackson on backing vocals. the song became a halloween classic due to its paranoid lyrics about being watched."
             },
             {
-                question: "Which flower is often associated with remembrance?",
+                question: "thriller was co-written by which famous music producer?",
                 answers: [
-                    "Rose",
-                    "Poppy",
-                    "Lily",
-                    "All of the above"
+                    "quincy jones",
+                    "phil spector",
+                    "rick rubin",
+                    "george martin"
                 ],
-                correct: 3
+                correct: 0,
+                explanation: "quincy jones co-wrote and produced michael jackson's thriller album, which became the best-selling album of all time and featured the iconic halloween-themed title track."
             },
             {
-                question: "who is going to win my heart?",
+                question: "who is going to win my heart and become my infinite lover?",
                 answers: [
                     "the bro",
                     "the other bro",
                     "the other other bro",
-                    "i dunno man, i am getting a little confused here..."
+                    "i dunno man, i am getting a lil confused here..."
                 ],
-                correct: 2
+                correct: 2,
+                explanation: "well, let's see who is brave enough to get a date with me... we don't want to live in the interwebs forever, do we?"
             }
         ];
 
@@ -205,6 +211,7 @@
             questionNumber.textContent = `Question ${currentQuestion + 1} of 7`;
             questionText.textContent = question.question;
             
+            // Clear previous content including explanations
             answersContainer.innerHTML = '';
             
             question.answers.forEach((answer, index) => {
@@ -219,51 +226,99 @@
         function selectAnswer(answerIndex) {
             selectedAnswer = answerIndex;
             const answerButtons = document.querySelectorAll('.answer-btn');
+            const question = triviaQuestions[currentQuestion];
+            const isLastQuestion = currentQuestion === 6;
             
-            // Remove previous selections
-            answerButtons.forEach(btn => btn.classList.remove('selected'));
+            // Remove previous selections and feedback
+            answerButtons.forEach(btn => {
+                btn.classList.remove('selected', 'correct', 'incorrect');
+                btn.disabled = false;
+            });
+            
+            // Disable all buttons to prevent multiple selections
+            answerButtons.forEach(btn => btn.disabled = true);
+            
+            // Show immediate feedback
+            if (isLastQuestion) {
+                // Last question: ALL ANSWERS ARE CORRECT
+                answerButtons.forEach((btn, index) => {
+                    btn.classList.add('correct');
+                });
+            } else {
+                // Other questions: normal logic with one correct answer
+                answerButtons.forEach((btn, index) => {
+                    if (index === question.correct) {
+                        btn.classList.add('correct');
+                    } else if (index === answerIndex && index !== question.correct) {
+                        btn.classList.add('incorrect');
+                    }
+                });
+            }
             
             // Highlight selected answer
             answerButtons[answerIndex].classList.add('selected');
             
-            // Show submit button
-            const submitBtn = document.createElement('button');
-            submitBtn.className = 'submit-btn';
-            submitBtn.textContent = 'Submit Answer';
-            submitBtn.addEventListener('click', checkAnswer);
+            // Show explanation
+            showAnswerExplanation(question, answerIndex);
+            
+            // Show next button instead of submit
+            const nextBtn = document.createElement('button');
+            nextBtn.className = 'submit-btn';
+            nextBtn.textContent = currentQuestion === triviaQuestions.length - 1 ? 'See Results' : 'Next Question';
+            nextBtn.addEventListener('click', checkAnswer);
             
             const answersContainer = document.getElementById('answersContainer');
             if (!document.querySelector('.submit-btn')) {
-                answersContainer.appendChild(submitBtn);
+                answersContainer.appendChild(nextBtn);
             }
+        }
+
+        function showAnswerExplanation(question, selectedIndex) {
+            // Remove any existing explanation
+            const existingExplanation = document.querySelector('.answer-explanation');
+            if (existingExplanation) {
+                existingExplanation.remove();
+            }
+            
+            // Create explanation element
+            const explanation = document.createElement('div');
+            explanation.className = 'answer-explanation';
+            
+            const isCorrect = selectedIndex === question.correct;
+            const isLastQuestion = currentQuestion === 6;
+            
+            if (isLastQuestion) {
+                // Special handling for the last question
+                explanation.innerHTML = `
+                    <div class="explanation-content">
+                        <p class="explanation-text">💥 boom! 💥</p>
+                        <p class="explanation-text">this question was a trick! time for the big finale!</p>
+                    </div>
+                `;
+            } else if (isCorrect) {
+                explanation.innerHTML = `
+                    <div class="explanation-content correct-explanation">
+                        <p class="explanation-text">✅ correct!</p>
+                        <p class="explanation-text">${question.explanation}</p>
+                    </div>
+                `;
+            } else {
+                explanation.innerHTML = `
+                    <div class="explanation-content incorrect-explanation">
+                        <p class="explanation-text">❌ not quite right.</p>
+                        <p class="explanation-text">${question.explanation}</p>
+                    </div>
+                `;
+            }
+            
+            // Add explanation to the answers container
+            const answersContainer = document.getElementById('answersContainer');
+            answersContainer.appendChild(explanation);
         }
 
         function checkAnswer() {
             const question = triviaQuestions[currentQuestion];
-            const answerButtons = document.querySelectorAll('.answer-btn');
-            const submitBtn = document.querySelector('.submit-btn');
-            
-            // Disable all buttons
-            answerButtons.forEach(btn => btn.disabled = true);
-            submitBtn.disabled = true;
-            
-            // For the last question (index 6), all answers are wrong
             const isLastQuestion = currentQuestion === 6;
-            
-            // Show correct/incorrect answers
-            answerButtons.forEach((btn, index) => {
-                if (isLastQuestion) {
-                    // For last question, mark all as incorrect
-                    btn.classList.add('incorrect');
-                } else {
-                    // Normal logic for other questions
-                    if (index === question.correct) {
-                        btn.classList.add('correct');
-                    } else if (index === selectedAnswer && index !== question.correct) {
-                        btn.classList.add('incorrect');
-                    }
-                }
-            });
             
             // Update score
             if (isLastQuestion) {

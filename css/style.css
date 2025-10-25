@@ -1790,6 +1790,55 @@ a:active {
         inset 0 1px 0 rgba(255, 255, 255, 0.1);
 }
 
+/* Answer Explanation Styles */
+.answer-explanation {
+    margin-top: 20px;
+    padding: 20px;
+    border-radius: 15px;
+    background: linear-gradient(135deg, rgba(45, 10, 92, 0.9), rgba(61, 15, 106, 0.9));
+    border: 2px solid transparent;
+    animation: explanationSlideIn 0.5s ease-out;
+    box-shadow: 
+        0 8px 25px rgba(0, 0, 0, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+.explanation-content {
+    text-align: center;
+}
+
+.explanation-content.correct-explanation {
+    border-left: 4px solid #4caf50;
+}
+
+.explanation-content.incorrect-explanation {
+    border-left: 4px solid #f44336;
+}
+
+.explanation-text {
+    color: #fff;
+    margin: 8px 0;
+    font-size: 1.1rem;
+    line-height: 1.4;
+}
+
+.explanation-text:first-child {
+    font-weight: bold;
+    font-size: 1.2rem;
+    margin-bottom: 12px;
+}
+
+@keyframes explanationSlideIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
 .submit-btn {
     background: linear-gradient(135deg, #ff8c00, #ff6b35);
     border: 2px solid #ff6b35;

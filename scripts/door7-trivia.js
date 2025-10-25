@@ -90,29 +90,11 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 function createFloatingSkulls() {
-    const skullCount = 12;
-    
-    for (let i = 0; i < skullCount; i++) {
-        const skull = document.createElement('div');
-        skull.className = 'floating-skull';
-        skull.innerHTML = '💀';
-        skull.style.left = `${Math.random() * 100}vw`;
-        skull.style.top = `${Math.random() * 100}vh`;
-        skull.style.animationDuration = `${8 + Math.random() * 12}s`;
-        skull.style.animationDelay = `${Math.random() * 5}s`;
-        skull.style.opacity = `${0.2 + Math.random() * 0.3}`;
-        skull.style.fontSize = `${8 + Math.random() * 4}px`;
-        document.body.appendChild(skull);
-    }
+    // No floating elements
 }
 
 function changeSkullsToHearts() {
-    const skulls = document.querySelectorAll('.floating-skull');
-    skulls.forEach(skull => {
-        skull.innerHTML = '💖';
-        // Add a subtle animation to the hearts
-        skull.style.animation = 'floatUp 4s ease-in-out infinite alternate';
-    });
+    // No floating elements to change
 }
 
 function initializeTrivia() {
@@ -211,21 +193,21 @@ function showAnswerExplanation(question, selectedIndex) {
         // Special handling for the last question
         explanation.innerHTML = `
             <div class="explanation-content">
-                <p class="explanation-text">💥 boom! 💥</p>
+                <p class="explanation-text">boom!</p>
                 <p class="explanation-text">this question was a trick! time for the big finale!</p>
             </div>
         `;
     } else if (isCorrect) {
         explanation.innerHTML = `
             <div class="explanation-content correct-explanation">
-                <p class="explanation-text">✅ correct!</p>
+                <p class="explanation-text">correct!</p>
                 <p class="explanation-text">${question.explanation}</p>
             </div>
         `;
     } else {
         explanation.innerHTML = `
             <div class="explanation-content incorrect-explanation">
-                <p class="explanation-text">❌ not quite right.</p>
+                <p class="explanation-text">not quite right.</p>
                 <p class="explanation-text">${question.explanation}</p>
             </div>
         `;
@@ -244,32 +226,31 @@ function checkAnswer() {
     if (isLastQuestion) {
         // Last question is always wrong, create explosion effect
         createExplosionEffect();
-        createFloatingEmoji('💥', 3);
         // Immediately hide the question and show results
         showResults();
     } else if (selectedAnswer === question.correct) {
         score++;
-        createFloatingEmoji('✨');
-    } else {
-        createFloatingEmoji('💀');
     }
     
-    // Move to next question after delay (only for non-last questions)
+    // Move to next question immediately (only for non-last questions)
     if (!isLastQuestion) {
-        setTimeout(() => {
-            currentQuestion++;
-            if (currentQuestion < triviaQuestions.length) {
-                showQuestion();
-            } else {
-                showResults();
-            }
-        }, 2000);
+        currentQuestion++;
+        if (currentQuestion < triviaQuestions.length) {
+            showQuestion();
+        } else {
+            showResults();
+        }
     }
 }
 
 function showResults() {
     document.getElementById('questionContainer').style.display = 'none';
     document.getElementById('triviaResults').style.display = 'block';
+    
+    // Apply pink styling immediately after the boom
+    document.body.classList.add('quiz-complete-pink');
+    // Change skulls to hearts when page turns pink
+    changeSkullsToHearts();
     
     const scoreDisplay = document.getElementById('scoreDisplay');
     const celebration = document.getElementById('celebration');
@@ -283,25 +264,38 @@ function showResults() {
     
     // Celebration message based on score
     if (percentage >= 85) {
-        celebration.innerHTML = '🌟 Excellent! You truly understand the beauty of memento mori! 🌟';
-        createFloatingEmoji('🌟', 5);
+        celebration.innerHTML = 'Excellent! You truly understand the beauty of memento mori!';
     } else if (percentage >= 70) {
-        celebration.innerHTML = '✨ Great job! You have a good grasp of life\'s precious nature! ✨';
-        createFloatingEmoji('✨', 3);
+        celebration.innerHTML = 'Great job! You have a good grasp of life\'s precious nature!';
     } else if (percentage >= 50) {
-        celebration.innerHTML = '💫 Not bad! Remember, every moment is a chance to learn! 💫';
-        createFloatingEmoji('💫', 2);
+        celebration.innerHTML = 'Not bad! Remember, every moment is a chance to learn!';
     } else {
-        celebration.innerHTML = '🌱 Keep learning! The journey of understanding mortality is beautiful! 🌱';
-        createFloatingEmoji('🌱', 2);
+        celebration.innerHTML = 'Keep learning! The journey of understanding mortality is beautiful!';
     }
     
-    // Add pink effect to the page after quiz completion
+    // Force pink styling on result elements immediately
     setTimeout(() => {
-        document.body.classList.add('quiz-complete-pink');
-        // Change skulls to hearts when page turns pink
-        changeSkullsToHearts();
-    }, 300);
+        if (scoreDisplay) {
+            const h3 = scoreDisplay.querySelector('h3');
+            const p = scoreDisplay.querySelector('p');
+            if (h3) {
+                h3.style.color = '#ff1493';
+                h3.style.textShadow = '0 0 15px rgba(255, 20, 147, 0.8), 2px 2px 4px rgba(0, 0, 0, 0.8)';
+            }
+            if (p) {
+                p.style.color = '#ff1493';
+                p.style.textShadow = '1px 1px 2px rgba(0, 0, 0, 0.8), 0 0 10px rgba(255, 20, 147, 0.6)';
+            }
+        }
+        
+        if (celebration) {
+            celebration.style.color = '#ff1493';
+            celebration.style.background = 'linear-gradient(135deg, rgba(255, 20, 147, 0.3), rgba(255, 105, 180, 0.3))';
+            celebration.style.border = '2px solid rgba(255, 20, 147, 0.7)';
+            celebration.style.textShadow = '0 0 10px rgba(255, 20, 147, 0.7)';
+            celebration.style.boxShadow = '0 0 20px rgba(255, 20, 147, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.2)';
+        }
+    }, 100);
 }
 
 function createExplosionEffect() {
@@ -323,11 +317,12 @@ function createExplosionEffect() {
     // Create explosion particles
     for (let i = 0; i < 20; i++) {
         const particle = document.createElement('div');
-        particle.innerHTML = ['💥', '🔥', '⚡', '💢'][Math.floor(Math.random() * 4)];
+        particle.innerHTML = '*';
         particle.style.position = 'fixed';
         particle.style.left = `${Math.random() * 100}vw`;
         particle.style.top = `${Math.random() * 100}vh`;
         particle.style.fontSize = `${20 + Math.random() * 30}px`;
+        particle.style.color = '#ff0000';
         particle.style.zIndex = '10000';
         particle.style.pointerEvents = 'none';
         particle.style.animation = `explosionParticle 1s ease-out forwards`;
@@ -358,23 +353,3 @@ function createExplosionEffect() {
     }, 800);
 }
 
-function createFloatingEmoji(emoji, count = 1) {
-    for (let i = 0; i < count; i++) {
-        setTimeout(() => {
-            const floatingEmoji = document.createElement('div');
-            floatingEmoji.innerHTML = emoji;
-            floatingEmoji.style.position = 'fixed';
-            floatingEmoji.style.left = `${Math.random() * 100}vw`;
-            floatingEmoji.style.top = '50vh';
-            floatingEmoji.style.fontSize = '2rem';
-            floatingEmoji.style.pointerEvents = 'none';
-            floatingEmoji.style.zIndex = '1000';
-            floatingEmoji.style.animation = 'floatUp 3s ease-out forwards';
-            document.body.appendChild(floatingEmoji);
-            
-            setTimeout(() => {
-                document.body.removeChild(floatingEmoji);
-            }, 3000);
-        }, i * 200);
-    }
-}

@@ -1182,6 +1182,35 @@ body.quiz-complete-pink .back-button {
     border: 2px solid #ff1493 !important;
 }
 
+body.quiz-complete-pink .score-display h3 {
+    color: #ff1493 !important;
+    text-shadow: 0 0 15px rgba(255, 20, 147, 0.8), 2px 2px 4px rgba(0, 0, 0, 0.8) !important;
+}
+
+body.quiz-complete-pink .score-display p {
+    color: #ff1493 !important;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8), 0 0 10px rgba(255, 20, 147, 0.6) !important;
+}
+
+body.quiz-complete-pink .trivia-results {
+    background: linear-gradient(135deg, rgba(255, 192, 203, 0.95), rgba(255, 105, 180, 0.9), rgba(255, 20, 147, 0.8)) !important;
+    border: 3px solid #ff1493 !important;
+    box-shadow: 
+        0 0 40px rgba(255, 20, 147, 0.8),
+        inset 0 0 20px rgba(255, 182, 193, 0.4),
+        0 8px 32px rgba(255, 105, 180, 0.6) !important;
+}
+
+body.quiz-complete-pink .celebration {
+    color: #ff1493 !important;
+    background: linear-gradient(135deg, rgba(255, 20, 147, 0.3), rgba(255, 105, 180, 0.3)) !important;
+    border: 2px solid rgba(255, 20, 147, 0.7) !important;
+    text-shadow: 0 0 10px rgba(255, 20, 147, 0.7) !important;
+    box-shadow: 
+        0 0 20px rgba(255, 20, 147, 0.4),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2) !important;
+}
+
 /* Explosion effect animations */
 @keyframes explosionParticle {
     0% {
@@ -1893,16 +1922,16 @@ a:active {
 }
 
 .trivia-results {
-    background: linear-gradient(135deg, rgba(0, 0, 0, 0.6), rgba(26, 15, 61, 0.7));
+    background: linear-gradient(135deg, rgba(255, 192, 203, 0.9), rgba(255, 105, 180, 0.8), rgba(255, 20, 147, 0.7));
     border-radius: 25px;
     padding: 40px;
     text-align: center;
     border: 3px solid transparent;
     background-clip: padding-box;
     box-shadow: 
-        0 0 40px rgba(255, 140, 0, 0.4),
-        inset 0 0 20px rgba(255, 140, 0, 0.1),
-        0 8px 32px rgba(0, 0, 0, 0.3);
+        0 0 40px rgba(255, 20, 147, 0.6),
+        inset 0 0 20px rgba(255, 182, 193, 0.3),
+        0 8px 32px rgba(255, 105, 180, 0.4);
     position: relative;
     overflow: hidden;
 }
@@ -1914,7 +1943,7 @@ a:active {
     left: 0;
     right: 0;
     bottom: 0;
-    background: linear-gradient(45deg, #ff8c00, #ff6b35, #9d4edd, #7b2cbf);
+    background: linear-gradient(45deg, #ff69b4, #ff1493, #ffc0cb, #ffb6c1);
     border-radius: 25px;
     padding: 3px;
     mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
@@ -1924,10 +1953,10 @@ a:active {
 
 .score-display h3 {
     font-size: 2.5rem;
-    color: #ff8c00;
+    color: #ff1493;
     margin-bottom: 20px;
     text-shadow: 
-        0 0 15px rgba(255, 140, 0, 0.8),
+        0 0 15px rgba(255, 20, 147, 0.8),
         2px 2px 4px rgba(0, 0, 0, 0.8);
     animation: glow 2s ease-in-out infinite alternate;
     font-weight: bold;
@@ -1938,28 +1967,28 @@ a:active {
     font-size: 1.4rem;
     color: #fff;
     margin-bottom: 25px;
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8), 0 0 10px rgba(255, 20, 147, 0.4);
     font-weight: 500;
 }
 
 .celebration {
     font-size: 1.3rem;
-    color: #9d4edd;
+    color: #ff1493;
     margin: 25px 0;
     padding: 20px;
-    background: linear-gradient(135deg, rgba(157, 78, 221, 0.2), rgba(123, 44, 191, 0.2));
+    background: linear-gradient(135deg, rgba(255, 20, 147, 0.2), rgba(255, 105, 180, 0.2));
     border-radius: 15px;
-    border: 2px solid rgba(157, 78, 221, 0.5);
-    text-shadow: 0 0 10px rgba(157, 78, 221, 0.5);
+    border: 2px solid rgba(255, 20, 147, 0.5);
+    text-shadow: 0 0 10px rgba(255, 20, 147, 0.5);
     box-shadow: 
-        0 0 20px rgba(157, 78, 221, 0.3),
+        0 0 20px rgba(255, 20, 147, 0.3),
         inset 0 1px 0 rgba(255, 255, 255, 0.1);
     animation: celebrationPulse 3s ease-in-out infinite;
 }
 
 .restart-btn {
-    background: linear-gradient(135deg, #9d4edd, #7b2cbf);
-    border: 2px solid #9d4edd;
+    background: linear-gradient(135deg, #ff69b4, #ff1493);
+    border: 2px solid #ff1493;
     color: #fff;
     padding: 15px 35px;
     border-radius: 30px;
@@ -1994,11 +2023,11 @@ a:active {
 }
 
 .restart-btn:hover {
-    background: linear-gradient(135deg, #7b2cbf, #9d4edd);
+    background: linear-gradient(135deg, #ff1493, #ff69b4);
     transform: translateY(-3px) scale(1.05);
     box-shadow: 
-        0 10px 30px rgba(157, 78, 221, 0.7),
-        0 0 25px rgba(157, 78, 221, 0.5);
+        0 10px 30px rgba(255, 20, 147, 0.7),
+        0 0 25px rgba(255, 20, 147, 0.5);
     text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
 }
 
@@ -2064,19 +2093,19 @@ a:active {
     0% {
         transform: scale(1);
         box-shadow: 
-            0 0 20px rgba(157, 78, 221, 0.3),
+            0 0 20px rgba(255, 20, 147, 0.3),
             inset 0 1px 0 rgba(255, 255, 255, 0.1);
     }
     50% {
         transform: scale(1.02);
         box-shadow: 
-            0 0 30px rgba(157, 78, 221, 0.5),
+            0 0 30px rgba(255, 20, 147, 0.5),
             inset 0 1px 0 rgba(255, 255, 255, 0.2);
     }
     100% {
         transform: scale(1);
         box-shadow: 
-            0 0 20px rgba(157, 78, 221, 0.3),
+            0 0 20px rgba(255, 20, 147, 0.3),
             inset 0 1px 0 rgba(255, 255, 255, 0.1);
     }
 }

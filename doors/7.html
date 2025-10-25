@@ -65,19 +65,9 @@
         </div>
     </div>
 
-    <!-- Pink Bottom Section -->
-    <div class="door-page pink-section">
+    <!-- Back Button Section -->
+    <div class="door-page back-section">
         <div class="door-content">
-            <div class="pink-content">
-                <h2 class="pink-title">today's spell</h2>
-                <p class="pink-text">
-                    today's task is to prove how much you want it. the game clock is ticking...
-                    </p>
-                <div class="pink-decoration">
-                    ✨ ✨ ✨
-                </div>
-            </div>
-            
             <a href="../index.html" class="back-button">← back to the countdown</a>
         </div>
     </div>
@@ -304,6 +294,11 @@
                 celebration.innerHTML = '🌱 Keep learning! The journey of understanding mortality is beautiful! 🌱';
                 createFloatingEmoji('🌱', 2);
             }
+            
+            // Add pink effect to the page after quiz completion
+            setTimeout(() => {
+                document.body.classList.add('quiz-complete-pink');
+            }, 300);
         }
 
         function createFloatingEmoji(emoji, count = 1) {
@@ -327,22 +322,6 @@
             }
         }
 
-        // Scroll effect to make pink section transition from black/white to pink
-        window.addEventListener('scroll', function() {
-            const pinkSection = document.querySelector('.pink-section');
-            const sectionTop = pinkSection.offsetTop;
-            const sectionHeight = pinkSection.offsetHeight;
-            const scrollPosition = window.scrollY + window.innerHeight;
-            
-            // Calculate when the pink section comes into view
-            const triggerPoint = sectionTop - (window.innerHeight * 0.3);
-            
-            if (scrollPosition > triggerPoint) {
-                pinkSection.classList.add('pink-active');
-            } else {
-                pinkSection.classList.remove('pink-active');
-            }
-        });
     </script>
 </body>
 </html>

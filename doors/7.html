@@ -19,22 +19,19 @@
 
             <div class="door-text">
                 <div class="video-container" style="display: flex; justify-content: center; gap: 15px; margin: 40px 0; flex-wrap: wrap;">
-                    <iframe width="400" height="250" src="https://www.youtube.com/embed/pjq-PmryUmA?modestbranding=1&showinfo=0&rel=0&controls=1&disablekb=1&fs=1&iv_load_policy=3&cc_load_policy=0" 
-                        frameborder="0" 
+                    <iframe width="400" height="250" src="https://www.youtube.com/embed/pjq-PmryUmA?modestbranding=1&rel=0&controls=1&fs=1" 
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
                         allowfullscreen
                         style="max-width: 100%; border-radius: 15px; border: 3px solid #ff8c00; box-shadow: 0 0 20px rgba(255, 140, 0, 0.4);">
                     </iframe>
 
-                    <iframe width="400" height="250" src="https://www.youtube.com/embed/iIyrLRixMs8?modestbranding=1&showinfo=0&rel=0&controls=1&disablekb=1&fs=1&iv_load_policy=3&cc_load_policy=0" 
-                        frameborder="0" 
+                    <iframe width="400" height="250" src="https://www.youtube.com/embed/iIyrLRixMs8?modestbranding=1&rel=0&controls=1&fs=1" 
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
                         allowfullscreen
                         style="max-width: 100%; border-radius: 15px; border: 3px solid #ff8c00; box-shadow: 0 0 20px rgba(255, 140, 0, 0.4);">
                     </iframe>
 
-                    <iframe width="400" height="250" src="https://www.youtube.com/embed/sOnqjkJTMaA?modestbranding=1&showinfo=0&rel=0&controls=1&disablekb=1&fs=1&iv_load_policy=3&cc_load_policy=0" 
-                        frameborder="0" 
+                    <iframe width="400" height="250" src="https://www.youtube.com/embed/sOnqjkJTMaA?modestbranding=1&rel=0&controls=1&fs=1" 
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
                         allowfullscreen
                         style="max-width: 100%; border-radius: 15px; border: 3px solid #ff8c00; box-shadow: 0 0 20px rgba(255, 140, 0, 0.4);">
@@ -44,13 +41,13 @@
 
                 <div class="door-text">
                     hello, my dear anon,<br>
-                    halloween and all saints day is almost here!<br>
+                    halloween and all saints' day is almost here!<br>
                     i hope you are enjoying this beautiful autumn weekend<br>
-                    (with all its colors and smells)<br>
+                    (with all its colors and scents)
                     
                     <br><br>
                     
-                    today, we will meditate on the ephemrity of things<br>
+                    today, we will meditate on the ephemerality of things<br>
                     (but not too much, because dwelling on it too deeply would contradict<br>
                     the simple truth that you should be enjoying the moment instead)
     
@@ -214,12 +211,6 @@
             score = 0;
             showQuestion();
             
-            // Add restart button functionality
-            document.getElementById('restartBtn').addEventListener('click', function() {
-                document.getElementById('triviaResults').style.display = 'none';
-                document.getElementById('questionContainer').style.display = 'block';
-                initializeTrivia();
-            });
         }
 
         function showQuestion() {
@@ -228,7 +219,7 @@
             const questionText = document.getElementById('questionText');
             const answersContainer = document.getElementById('answersContainer');
 
-            questionNumber.textContent = `Question ${currentQuestion + 1} of 7`;
+            questionNumber.textContent = `question ${currentQuestion + 1} of 7`;
             questionText.textContent = question.question;
             
             // Clear previous content including explanations

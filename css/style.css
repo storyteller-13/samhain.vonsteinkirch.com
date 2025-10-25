@@ -1110,6 +1110,13 @@ footer p {
     box-shadow: 0 0 20px rgba(255, 255, 255, 0.3) !important;
 }
 
+.video-iframe {
+    max-width: 100%;
+    border-radius: 15px;
+    border: 3px solid #ff8c00 !important;
+    box-shadow: 0 0 20px rgba(255, 140, 0, 0.4) !important;
+}
+
 /* Back Section - simple section for back button */
 .back-section {
     background: linear-gradient(135deg, #000000, #1a1a1a, #2a2a2a);

@@ -55,7 +55,7 @@ const triviaQuestions = [
         explanation: "rockwell released 'somebody's watching me' in 1984, featuring michael jackson on backing vocals. the song became a halloween classic due to its paranoid lyrics about being watched, perfectly capturing the spooky atmosphere of the season. interestingly, rockwell was the son of motown founder berry gordy, and the song's success was largely due to jackson's distinctive backing vocals."
     },
     {
-        question: "what is the name of the hotel where jack torrance takes his family to work during the winter in the shining?",
+        question: "what is the name of the hotel where jack torrance takes his family to work during the winter in 'the shining'?",
         answers: [
             "the grandview hotel",
             "the overlook hotel",

@@ -1,7 +1,7 @@
 class FibonacciDoors {
     constructor() {
         this.currentIndex = 0;
-        this.fibonacciSequence = this.generateFibonacciSequence(100);
+        this.fibonacciSequence = this.generateFibonacciSequence(8);
         this.openedDoors = [];
         this.doorStack = document.getElementById('doorStack');
         
@@ -67,8 +67,51 @@ class FibonacciDoors {
         setTimeout(() => {
             door.classList.remove('opening');
             door.classList.add('opened');
-            this.createDoor(index + 1);
+            
+            // Check if this is the last door in the sequence
+            if (index + 1 >= this.fibonacciSequence.length) {
+                this.showLoveMessage();
+            } else {
+                this.createDoor(index + 1);
+            }
         }, 800);
+    }
+
+    showLoveMessage() {
+        const loveMessage = document.createElement('div');
+        loveMessage.className = 'love-message appearing';
+        loveMessage.innerHTML = 'i <3 you';
+        
+        // Style the love message
+        loveMessage.style.cssText = `
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 3rem;
+            font-weight: bold;
+            color: #ff69b4;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            z-index: 1000;
+            animation: pulse 2s infinite;
+        `;
+        
+        // Add pulse animation
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes pulse {
+                0% { transform: translate(-50%, -50%) scale(1); }
+                50% { transform: translate(-50%, -50%) scale(1.1); }
+                100% { transform: translate(-50%, -50%) scale(1); }
+            }
+        `;
+        document.head.appendChild(style);
+        
+        this.doorStack.appendChild(loveMessage);
+        
+        setTimeout(() => {
+            loveMessage.classList.remove('appearing');
+        }, 600);
     }
 }
 

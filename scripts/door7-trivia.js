@@ -70,7 +70,7 @@ const triviaQuestions = [
         answers: [
             "the charming vampire with impeccable manners",
             "the brooding werewolf who howls at the moon",
-            "the ethereal ghost who's been haunting for centuries",
+            "the celestial ghost who's been haunting for centuries",
             "now, this is a halloween mystery..."
         ],
         correct: 3,

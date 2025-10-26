@@ -71,7 +71,7 @@ const triviaQuestions = [
             "the charming vampire with impeccable manners",
             "the brooding werewolf who howls at the moon",
             "the celestial ghost who's been haunting for centuries",
-            "now, this is a halloween mystery..."
+            "now, this is a halloween conundrum..."
         ],
         correct: 3,
         explanation: "well, let's see who is brave enough to get a date with her... we don't want to live in the interwebs forever, do we?"

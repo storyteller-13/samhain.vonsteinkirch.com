@@ -82,18 +82,35 @@
 
         .door-handle {
             position: absolute;
-            right: 20px;
+            right: 15px;
             top: 50%;
             transform: translateY(-50%);
-            width: 20px;
-            height: 20px;
-            background: radial-gradient(circle, #FFD700, #B8860B);
+            width: 24px;
+            height: 24px;
+            background: radial-gradient(circle at 30% 30%, #FFD700, #FFA500, #B8860B);
             border-radius: 50%;
-            border: 2px solid #8B4513;
+            border: 3px solid #8B4513;
             box-shadow: 
-                0 2px 4px rgba(0, 0, 0, 0.3),
-                inset 0 1px 2px rgba(255, 255, 255, 0.3);
+                0 4px 8px rgba(0, 0, 0, 0.4),
+                0 2px 4px rgba(0, 0, 0, 0.2),
+                inset 0 2px 4px rgba(255, 255, 255, 0.4),
+                inset 0 -1px 2px rgba(0, 0, 0, 0.2);
             z-index: 3;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .door-handle::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 10px;
+            height: 10px;
+            background: radial-gradient(circle, #8B4513, #654321);
+            border-radius: 50%;
+            box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.3);
         }
 
         .door-handle::after {
@@ -102,10 +119,11 @@
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            width: 8px;
-            height: 8px;
-            background: #8B4513;
+            width: 4px;
+            height: 4px;
+            background: radial-gradient(circle, #FFD700, #FFA500);
             border-radius: 50%;
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
         }
 
         .door-frame {
@@ -158,8 +176,18 @@
         }
 
         .fibonacci-door:hover .door-handle {
+            background: radial-gradient(circle at 30% 30%, #FFA500, #FF8C00, #FF6B00);
+            transform: translateY(-50%) rotate(15deg) scale(1.1);
+            box-shadow: 
+                0 6px 12px rgba(0, 0, 0, 0.5),
+                0 3px 6px rgba(0, 0, 0, 0.3),
+                inset 0 2px 4px rgba(255, 255, 255, 0.5),
+                inset 0 -1px 2px rgba(0, 0, 0, 0.3);
+        }
+
+        .fibonacci-door:hover .door-handle::after {
             background: radial-gradient(circle, #FFA500, #FF8C00);
-            transform: translateY(-50%) rotate(10deg);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
         }
 
         .fibonacci-door.opening {

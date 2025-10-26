@@ -236,7 +236,7 @@ function showResults() {
     const percentage = Math.round((score / triviaQuestions.length) * 100);
     
     scoreDisplay.innerHTML = `
-        <h3>trivia complete!</h3>
+        <h3>thank you for playing today!</h3>
         <p>you scored ${score} out of ${triviaQuestions.length} (${percentage}%)</p>
     `;
     

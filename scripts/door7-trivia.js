@@ -66,7 +66,7 @@ const triviaQuestions = [
         explanation: "the overlook hotel is the iconic haunted location in stephen king's 'the shining' (1977) and stanley kubrick's 1980 film adaptation. inspired by the real-life stanley hotel in estes park, colorado, the overlook serves as a character itself — a massive, isolated mountain resort that becomes increasingly malevolent. the hotel's history includes a previous caretaker who murdered his family, and its supernatural influence drives jack torrance to madness. kubrick's film was shot at the timberline lodge in oregon for exterior shots, while the interior was built on soundstages in england, creating one of cinema's most memorable haunted locations."
     },
     {
-        question: "in this haunted game, who will capture the princess's heart?",
+        question: "in this spooky game, who'll win the princess's heart?",
         answers: [
             "the charming vampire with impeccable manners",
             "the brooding werewolf who howls at the moon",

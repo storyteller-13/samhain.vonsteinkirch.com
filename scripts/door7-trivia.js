@@ -234,8 +234,7 @@ function showResults() {
     const celebration = document.getElementById('celebration');
     
     scoreDisplay.innerHTML = `
-        <h3>thank you for playing today</h3>
-        <p>you scored ${score} out of ${triviaQuestions.length}</p>
+        <h3>thank you for playing; you scored ${score} out of ${triviaQuestions.length}</h3>
     `;
     
     celebration.innerHTML = `
@@ -254,6 +253,7 @@ function showResults() {
             if (h3) {
                 h3.style.color = '#ff1493';
                 h3.style.textShadow = '0 0 15px rgba(255, 20, 147, 0.8), 2px 2px 4px rgba(0, 0, 0, 0.8)';
+                h3.style.fontSize = '1.4rem';
             }
             if (p) {
                 p.style.color = '#ff1493';

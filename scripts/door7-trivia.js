@@ -178,7 +178,7 @@ function showAnswerExplanation(question, selectedIndex) {
         explanation.innerHTML = `
             <div class="explanation-content">
                 <p class="explanation-text">(this question was a tricky one)</p>
-                <p class="explanation-text">(time for the big finale)</p>
+                <p class="explanation-text">(time for the grand finale)</p>
             </div>
         `;
     } else if (isCorrect) {

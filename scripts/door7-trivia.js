@@ -237,36 +237,21 @@ function showResults() {
     
     scoreDisplay.innerHTML = `
         <h3>thank you for playing today</h3>
-        <p>you scored ${score} out of ${triviaQuestions.length} (${percentage}%)</p>
+        <p>you scored ${score} out of ${triviaQuestions.length}</p>
     `;
     
-    if (percentage >= 50) {
-        celebration.innerHTML = `
-            <div style="text-align: center;">
-                <div style="margin-top: 20px;">
-                    <iframe width="560" height="315" src="https://www.youtube.com/embed/7YvAYIJSSZY" 
-                            title="YouTube video player" frameborder="0" 
-                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-                            allowfullscreen
-                            style="border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.3);">
-                    </iframe>
-                </div>
+    celebration.innerHTML = `
+        <div style="text-align: center;">
+            <div style="margin-top: 20px;">
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/7YvAYIJSSZY" 
+                        title="YouTube video player" frameborder="0" 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                        allowfullscreen
+                        style="border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.3);">
+                </iframe>
             </div>
-        `;
-    } else {
-        celebration.innerHTML = `
-            <div style="text-align: center;">
-                <div style="margin-top: 20px;">
-                    <iframe width="560" height="315" src="https://www.youtube.com/embed/7YvAYIJSSZY" 
-                            title="YouTube video player" frameborder="0" 
-                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-                            allowfullscreen
-                            style="border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.3);">
-                    </iframe>
-                </div>
-            </div>
-        `;
-    }
+        </div>
+    `;
     
     setTimeout(() => {
         if (scoreDisplay) {
